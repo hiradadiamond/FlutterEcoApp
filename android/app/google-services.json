@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "642837561329",
+    "firebase_url": "https://letsgo-2e2a6.firebaseio.com",
+    "project_id": "letsgo-2e2a6",
+    "storage_bucket": "letsgo-2e2a6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642837561329:android:5bcaf35bc9303cb247ce50",
+        "android_client_info": {
+          "package_name": "com.surya.letsgo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "642837561329-sf7tokfvo2mh6gjhil8q3tbg551ejmfr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.surya.letsgo",
+            "certificate_hash": "e11b3a80be34098c9512da1911b0efd19c1376d6"
+          }
+        },
+        {
+          "client_id": "642837561329-shblfbdogo5s6s65uqetkj3ghdtd13kp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOSfzNzDXK3sl7PzUBOk4kCE58TqO0s40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "642837561329-shblfbdogo5s6s65uqetkj3ghdtd13kp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
