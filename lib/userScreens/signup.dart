@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:letsgo/tools/app_data.dart';
+import 'package:letsgo/tools/app_methods.dart';
 import 'package:letsgo/tools/app_tools.dart';
+import 'package:letsgo/tools/firebase_methods.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -15,6 +18,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController re_password = new TextEditingController();
   final scaffoldKey = new GlobalKey<ScaffoldState>();
   BuildContext context;
+  AppMethods appmethod = new FirebaseMethods();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +55,8 @@ class _SignUpState extends State<SignUp> {
                   sidPadding: 18.0,
                   textHint: "Phone Number",
                   textIcon: Icons.phone,
-                  controller: phonenumber
+                  controller: phonenumber,
+                  textType: TextInputType.number
 
               ),
               new SizedBox(
@@ -83,7 +88,6 @@ class _SignUpState extends State<SignUp> {
                   isPassword: true,
                   sidPadding: 18.0,
                   textHint: "Re-Password",
-                  textType: TextInputType.number,
                   textIcon: Icons.lock,
                   controller: re_password
 
@@ -100,7 +104,7 @@ class _SignUpState extends State<SignUp> {
         )
     );
   }
-  VerifyDetails(){
+  VerifyDetails() async {
     if(fullname.text==""){
       showSnackBar ("Fullname can not be empty", scaffoldKey);
       return;
@@ -116,6 +120,22 @@ class _SignUpState extends State<SignUp> {
       showSnackBar("Please emter your Password", scaffoldKey);
     }
     displayProgressDialog(context );
+
+    String response = await appmethod.createUserAccount(
+        fullname: fullname.text,
+        phone: phonenumber.text,
+        email: email.text.toLowerCase(),
+        password: password.text.toLowerCase());
+    if(response== successful){
+      closeProgressDialog(context);
+      Navigator.of(context).pop(true);
+      Navigator.of(context).pop(true);
+    }
+    else
+      {
+        closeProgressDialog(context);
+        showSnackBar(response, scaffoldKey);
+      }
 
   }
 

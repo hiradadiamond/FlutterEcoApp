@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:letsgo/userScreens/progressDialog.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Widget appTextField(
     {IconData textIcon,
@@ -58,12 +59,14 @@ Widget appButton(
     ),
   );
 }
-showSnackBar(String msg, final scaffoldKey){
+showSnackBar(String message, final scaffoldKey) {
   scaffoldKey.currentState.showSnackBar(new SnackBar(
-    backgroundColor: Colors.black,
-    content: new Text(
-      msg,
-      style: new TextStyle(color: Colors.white),
+    backgroundColor: Colors.red[600],
+    content:  Container(
+      child: Text(
+        message,
+        style: new TextStyle(color: Colors.white),
+      ),
     ),
   ));
 }
@@ -76,4 +79,10 @@ showSnackBar(String msg, final scaffoldKey){
       pageBuilder: (BuildContext context, _, __){
     return new ProgressDialog();
       }));
+ }
+
+ writeDataLocally({String key, String value}) async{
+  Future<SharedPreferences> saveLocal = SharedPreferences.getInstance();
+  final SharedPreferences localdata= await saveLocal;
+  localdata.setString(key, value);
  }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:letsgo/tools/app_data.dart';
+import 'package:letsgo/tools/app_methods.dart';
 import 'package:letsgo/tools/app_tools.dart';
+import 'package:letsgo/tools/firebase_methods.dart';
 import 'package:letsgo/userScreens/signup.dart';
 
 class Login extends StatefulWidget {
@@ -11,8 +14,8 @@ class _LoginState extends State<Login> {
 
   TextEditingController email = new TextEditingController();
   TextEditingController password = new TextEditingController();
-
   final scaffoldKey = new GlobalKey<ScaffoldState>();
+  AppMethods appMethod= new FirebaseMethods();
   BuildContext context;
 
   @override
@@ -73,19 +76,26 @@ class _LoginState extends State<Login> {
         )
     );
   }
-verifyLoggin() {
-    if(email.text==""){
-      showSnackBar ("Please Enter your Email", scaffoldKey);
-      return;
-    }
-    if(password.text==""){
-      showSnackBar("Please emter your Password", scaffoldKey);
+  verifyLoggin() async {
+    if (email.text == "") {
+      showSnackBar("Email cannot be empty", scaffoldKey);
       return;
     }
 
-    displayProgressDialog(context );
+    if (password.text == "") {
+      showSnackBar("Password cannot be empty", scaffoldKey);
+      return;
+    }
 
-}
-
-
+    displayProgressDialog(context);
+    String response = await appMethod.logginUser(
+        email: email.text.toLowerCase(), password: password.text.toLowerCase());
+    if (response == successful) {
+      closeProgressDialog(context);
+      Navigator.of(context).pop();
+    } else {
+      closeProgressDialog(context);
+      showSnackBar(response, scaffoldKey);
+    }
+  }
 }
