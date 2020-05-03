@@ -121,14 +121,14 @@ class _SignUpState extends State<SignUp> {
     }
     displayProgressDialog(context );
 
-    String response = await appmethod.createUserAccount(
+    String response = await appmethod. createUserAccount(
         fullname: fullname.text,
         phone: phonenumber.text,
         email: email.text.toLowerCase(),
         password: password.text.toLowerCase());
     if(response== successful){
       closeProgressDialog(context);
-      Navigator.of(context).pop(true);
+      Navigator.of(context).pop();
       Navigator.of(context).pop(true);
     }
     else

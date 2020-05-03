@@ -86,3 +86,32 @@ showSnackBar(String message, final scaffoldKey) {
   final SharedPreferences localdata= await saveLocal;
   localdata.setString(key, value);
  }
+writeBoolDataLocally({String key, bool value}) async {
+  Future<SharedPreferences> saveLocal = SharedPreferences.getInstance();
+  final SharedPreferences localData = await saveLocal;
+  localData.setBool(key, value);
+}
+getDataLocally({String key}) async{
+  Future<SharedPreferences> saveLocal = SharedPreferences.getInstance();
+  final SharedPreferences localdata= await saveLocal;
+  return localdata.get(key);
+}
+
+getStringDataLocally({String key}) async{
+   Future<SharedPreferences> saveLocal = SharedPreferences.getInstance();
+   final SharedPreferences localdata= await saveLocal;
+   return localdata.getString(key);
+ }
+getBoolDataLocally({String key}) async{
+  Future<SharedPreferences> saveLocal = SharedPreferences.getInstance();
+  final SharedPreferences localdata= await saveLocal;
+  return localdata.getBool(key) == null ? false : localdata.getBool(key);
+}
+
+ClearDataLocally() async{
+  Future<SharedPreferences> saveLocal = SharedPreferences.getInstance();
+  final SharedPreferences localdata= await saveLocal;
+  localdata.clear();
+
+}
+

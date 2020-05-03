@@ -92,7 +92,7 @@ class _LoginState extends State<Login> {
         email: email.text.toLowerCase(), password: password.text.toLowerCase());
     if (response == successful) {
       closeProgressDialog(context);
-      Navigator.of(context).pop();
+      Navigator.of(context).pop(true);
     } else {
       closeProgressDialog(context);
       showSnackBar(response, scaffoldKey);
