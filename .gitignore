@@ -1,0 +1,9 @@
+.idea/workspace.xml
+.idea/misc.xml
+.idea/libraries/Dart_Packages.xml
+.idea/libraries/Flutter_Plugins.xml
+android/letsgo_android.iml
+ios/Podfile.lock
+letsgo.iml
+pubspec.lock
+pubspec.yaml
